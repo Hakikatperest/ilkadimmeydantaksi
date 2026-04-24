@@ -182,16 +182,20 @@
 <style>
 /* ============ RESET & BASE ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
 body{
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   line-height:1.75;
   color:#1a1a1a;
   background:#fafafa;
   overflow-x:hidden;
+  width:100%;
+  max-width:100vw;
 }
-img{max-width:100%;height:auto;display:block}
+img,iframe,video{max-width:100%;height:auto;display:block}
+iframe{width:100%}
 a{text-decoration:none;color:inherit}
+h1,h2,h3,h4,p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
 
 /* Highlighted SEO keywords */
 .kw{color:#000;font-weight:800}
@@ -218,8 +222,10 @@ a{text-decoration:none;color:inherit}
   box-shadow:0 2px 20px rgba(0,0,0,.05);
   transition:all .4s ease;
 }
-.header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:.8rem;font-weight:900;font-size:1.35rem}
+.header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;gap:.8rem;font-weight:900;font-size:1.35rem;min-width:0;flex:1}
+.logo-text{line-height:1.1;min-width:0}
+.logo-text strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .logo-icon{
   width:48px;height:48px;border-radius:14px;
   background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));
@@ -228,8 +234,7 @@ a{text-decoration:none;color:inherit}
   animation:pulse 2s infinite;
 }
 .logo-icon i{color:var(--black);font-size:1.4rem}
-.logo-text{line-height:1.1}
-.logo-text small{display:block;font-size:.7rem;color:var(--gray);font-weight:500;letter-spacing:2px;text-transform:uppercase}
+.logo-text small{display:block;font-size:.7rem;color:var(--gray);font-weight:500;letter-spacing:2px;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .header-phone{
   display:flex;align-items:center;gap:.8rem;
   background:var(--black);color:var(--yellow);
@@ -247,17 +252,26 @@ a{text-decoration:none;color:inherit}
 /* ============ HERO ============ */
 .hero{
   min-height:100vh;
-  padding:120px 2rem 60px;
-  background:
-    linear-gradient(135deg,rgba(10,10,10,.85) 0%,rgba(26,26,26,.75) 100%),
-    url('https://www.ilkadimmeydantaksi.com/images/taksi1.webp') center/cover;
+  min-height:100dvh;
+  padding:120px 2rem 80px;
   position:relative;
   display:flex;align-items:center;
   overflow:hidden;
+  background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 50%,#0a0a0a 100%);
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 50%,rgba(255,215,0,.15),transparent 50%);
+  background-image:url('https://www.ilkadimmeydantaksi.com/images/taksi1.webp');
+  background-size:cover;background-position:center;
+  opacity:.25;
+  filter:saturate(1.2);
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,215,0,.25),transparent 50%),
+    radial-gradient(circle at 80% 70%,rgba(255,215,0,.15),transparent 50%),
+    linear-gradient(180deg,transparent 0%,rgba(10,10,10,.4) 100%);
   pointer-events:none;
 }
 .hero-inner{
@@ -267,76 +281,99 @@ a{text-decoration:none;color:inherit}
 }
 .hero-badge{
   display:inline-flex;align-items:center;gap:.6rem;
-  background:rgba(255,215,0,.2);border:1px solid rgba(255,215,0,.4);
-  color:var(--yellow);padding:.6rem 1.2rem;border-radius:50px;
-  font-size:.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;
-  margin-bottom:1.5rem;
+  background:rgba(255,215,0,.15);
+  border:1px solid rgba(255,215,0,.5);
+  color:#FFD700;
+  padding:.6rem 1.3rem;border-radius:50px;
+  font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:2rem;
+  backdrop-filter:blur(10px);
   animation:fadeUp .8s ease;
 }
 .hero-badge .dot{
   width:8px;height:8px;border-radius:50%;background:#4ade80;
+  box-shadow:0 0 12px #4ade80;
   animation:blink 1.5s infinite;
 }
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-size:clamp(2rem,5vw,4.5rem);
   font-weight:900;color:#fff;line-height:1.1;
   margin-bottom:1.5rem;
+  letter-spacing:-.02em;
+  text-shadow:0 4px 30px rgba(0,0,0,.5);
   animation:fadeUp 1s ease .2s backwards;
 }
 .hero h1 .highlight{
-  background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));
+  background:linear-gradient(135deg,#FFD700 0%,#FFA500 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
+  display:inline-block;
 }
-.hero p{
-  font-size:1.15rem;color:rgba(255,255,255,.85);
-  margin-bottom:2.5rem;max-width:560px;
+.hero-sub{
+  font-size:clamp(1rem,1.5vw,1.15rem);
+  color:rgba(255,255,255,.88);
+  margin-bottom:2.5rem;
+  max-width:560px;
+  line-height:1.75;
   animation:fadeUp 1s ease .4s backwards;
 }
+.hero-sub .kw{color:#FFD700;font-weight:700}
 .hero-cta{
   display:flex;gap:1rem;flex-wrap:wrap;
   animation:fadeUp 1s ease .6s backwards;
 }
 .btn{
   display:inline-flex;align-items:center;gap:.7rem;
-  padding:1.1rem 2.2rem;border-radius:50px;
-  font-weight:700;font-size:1.05rem;
+  padding:1.05rem 2rem;border-radius:50px;
+  font-weight:700;font-size:1rem;
   transition:all .3s cubic-bezier(.4,0,.2,1);
   border:none;cursor:pointer;
+  white-space:nowrap;
 }
 .btn-primary{
-  background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));
-  color:var(--black);
+  background:linear-gradient(135deg,#FFD700,#E6B800);
+  color:#0a0a0a;
   box-shadow:0 10px 30px rgba(255,215,0,.4);
 }
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(255,215,0,.6)}
 .btn-outline{
-  background:rgba(255,255,255,.1);color:#fff;
-  border:2px solid rgba(255,255,255,.3);backdrop-filter:blur(10px);
+  background:rgba(255,255,255,.08);color:#fff;
+  border:2px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);
 }
-.btn-outline:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);transform:translateY(-3px)}
 
 .hero-visual{position:relative;animation:fadeUp 1.2s ease .8s backwards}
 .hero-card{
-  background:rgba(255,255,255,.08);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:24px;padding:2.5rem;color:#fff;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  background:rgba(20,20,20,.75);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,215,0,.2);
+  border-radius:24px;padding:2rem;color:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);
 }
-.hero-card h3{font-size:1.3rem;margin-bottom:1.5rem;font-weight:700}
+.hero-card h3{
+  font-size:1.1rem;margin-bottom:1.5rem;font-weight:700;
+  color:#FFD700;letter-spacing:1px;text-transform:uppercase;
+  display:flex;align-items:center;gap:.6rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid rgba(255,215,0,.15);
+}
 .hero-stat{
   display:flex;align-items:center;gap:1rem;
-  padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.1);
+  padding:.9rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-.hero-stat:last-child{border:0}
+.hero-stat:last-child{border:0;padding-bottom:0}
 .hero-stat-icon{
-  width:50px;height:50px;border-radius:14px;
-  background:rgba(255,215,0,.2);color:var(--yellow);
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(255,215,0,.25),rgba(255,215,0,.1));
+  color:#FFD700;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;
+  font-size:1.1rem;flex-shrink:0;
+  border:1px solid rgba(255,215,0,.2);
 }
-.hero-stat-text strong{display:block;font-size:1.15rem;margin-bottom:.2rem}
-.hero-stat-text span{color:rgba(255,255,255,.7);font-size:.9rem}
+.hero-stat-text{min-width:0;flex:1}
+.hero-stat-text strong{display:block;font-size:1rem;margin-bottom:.15rem;color:#fff;font-weight:700}
+.hero-stat-text span{color:rgba(255,255,255,.65);font-size:.85rem;line-height:1.4;display:block}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -374,7 +411,7 @@ section{padding:6rem 2rem;position:relative}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .about-image{
   position:relative;border-radius:24px;overflow:hidden;
-  box-shadow:var(--shadow-lg);
+  box-shadow:var(--shadow-lg);min-width:0;
 }
 .about-image img{width:100%;height:600px;object-fit:cover;transition:transform .8s ease}
 .about-image:hover img{transform:scale(1.05)}
@@ -384,13 +421,15 @@ section{padding:6rem 2rem;position:relative}
   pointer-events:none;
 }
 .about-badge-float{
-  position:absolute;bottom:2rem;left:2rem;
+  position:absolute;bottom:1.5rem;left:1.5rem;
   background:var(--yellow);color:var(--black);
-  padding:1.5rem 2rem;border-radius:20px;
+  padding:1.2rem 1.6rem;border-radius:18px;
   box-shadow:var(--shadow-lg);
+  max-width:calc(100% - 3rem);
 }
-.about-badge-float strong{display:block;font-size:2.5rem;font-weight:900;line-height:1}
-.about-badge-float span{font-size:.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.about-badge-float strong{display:block;font-size:2.3rem;font-weight:900;line-height:1}
+.about-badge-float span{font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.about-content{min-width:0}
 .about-content p{margin-bottom:1.2rem;color:#333;font-size:1.02rem}
 .about-features{list-style:none;margin-top:2rem}
 .about-features li{
@@ -398,17 +437,17 @@ section{padding:6rem 2rem;position:relative}
   padding:1rem 0;border-bottom:1px solid #eee;
 }
 .about-features li i{
-  color:var(--yellow-dark);font-size:1.3rem;margin-top:.2rem;
+  color:var(--yellow-dark);font-size:1.2rem;margin-top:.2rem;
   background:rgba(255,215,0,.15);width:40px;height:40px;
   border-radius:50%;display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
-.about-features strong{display:block;margin-bottom:.2rem;font-size:1.05rem}
-.about-features span{color:var(--gray);font-size:.95rem}
+.about-features strong{display:block;margin-bottom:.2rem;font-size:1.02rem;line-height:1.4}
+.about-features span{color:var(--gray);font-size:.92rem;line-height:1.5;display:block}
 
 /* ============ SERVICES ============ */
 .services{background:linear-gradient(180deg,#fafafa,#fff)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2rem}
 .service-card{
   background:#fff;padding:2.5rem;border-radius:20px;
   border:1px solid #eee;transition:all .4s cubic-bezier(.4,0,.2,1);
@@ -435,20 +474,21 @@ section{padding:6rem 2rem;position:relative}
 /* ============ BÖLGELER ============ */
 .regions{
   background:
-    linear-gradient(135deg,rgba(10,10,10,.9),rgba(26,26,26,.85)),
+    linear-gradient(135deg,rgba(10,10,10,.92),rgba(26,26,26,.88)),
     url('https://www.ilkadimmeydantaksi.com/images/taksi3.webp') center/cover fixed;
   color:#fff;
 }
 .regions .section-title{color:#fff}
 .regions .section-subtitle{color:rgba(255,255,255,.7)}
 .regions .section-badge{background:rgba(255,215,0,.2)}
-.regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.5rem}
 .region-card{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.1);
   backdrop-filter:blur(10px);
   padding:2.5rem 2rem;border-radius:20px;
   transition:all .4s ease;position:relative;overflow:hidden;
+  min-width:0;
 }
 .region-card::before{
   content:'';position:absolute;top:0;right:0;width:100px;height:100px;
@@ -481,23 +521,25 @@ section{padding:6rem 2rem;position:relative}
   align-items:center;margin-bottom:6rem;
 }
 .article:last-child{margin-bottom:0}
-.article.reverse{direction:rtl}
-.article.reverse > *{direction:ltr}
-.article-image{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.article.reverse .article-image{order:2}
+.article.reverse .article-content{order:1}
+.article-image{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);min-width:0}
 .article-image img{width:100%;height:450px;object-fit:cover;transition:transform .8s ease}
 .article-image:hover img{transform:scale(1.08)}
+.article-content{min-width:0}
 .article h2{
   font-family:'Playfair Display',serif;
-  font-size:2.2rem;font-weight:900;line-height:1.2;
+  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;line-height:1.2;
   margin-bottom:1.5rem;color:var(--black);
 }
 .article h3{
-  font-size:1.3rem;font-weight:700;margin:2rem 0 1rem;color:var(--black);
+  font-size:1.2rem;font-weight:700;margin:2rem 0 1rem;color:var(--black);
 }
 .article p{color:#333;margin-bottom:1.2rem;font-size:1rem;line-height:1.8}
 .article ul{list-style:none;margin:1rem 0 1.5rem}
 .article ul li{
   padding:.6rem 0 .6rem 2rem;position:relative;color:#444;
+  line-height:1.7;
 }
 .article ul li::before{
   content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;
@@ -521,7 +563,7 @@ section{padding:6rem 2rem;position:relative}
   background:rgba(0,0,0,.05);
 }
 .why .section-badge{background:rgba(0,0,0,.15);color:var(--black)}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;position:relative;z-index:2}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:2rem;position:relative;z-index:2}
 .why-card{
   background:rgba(255,255,255,.3);backdrop-filter:blur(10px);
   padding:2.5rem 2rem;border-radius:20px;text-align:center;
@@ -570,7 +612,7 @@ section{padding:6rem 2rem;position:relative}
 .contact-info{
   background:linear-gradient(135deg,var(--black),#222);
   color:#fff;padding:3rem;border-radius:24px;
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;min-width:0;
 }
 .contact-info::before{
   content:'';position:absolute;top:-50%;right:-30%;
@@ -594,8 +636,9 @@ section{padding:6rem 2rem;position:relative}
   display:flex;align-items:center;justify-content:center;
   font-size:1.2rem;flex-shrink:0;
 }
+.contact-item-text{min-width:0;flex:1;overflow-wrap:break-word}
 .contact-item-text strong{display:block;margin-bottom:.3rem;font-size:1rem}
-.contact-item-text a,.contact-item-text span{color:rgba(255,255,255,.75);font-size:.95rem}
+.contact-item-text a,.contact-item-text span{color:rgba(255,255,255,.75);font-size:.95rem;word-break:break-word}
 .contact-item-text a:hover{color:var(--yellow)}
 .map-wrapper{
   border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);
@@ -691,6 +734,7 @@ section{padding:6rem 2rem;position:relative}
   display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;
   align-items:center;position:relative;z-index:2;
 }
+.online-search-content{min-width:0}
 .online-search-content h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;line-height:1.2;
@@ -804,25 +848,142 @@ section{padding:6rem 2rem;position:relative}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
-  .hero-inner,.about-grid,.contact-grid,.article,.article.reverse,.online-search-grid{grid-template-columns:1fr;gap:3rem}
-  .article.reverse{direction:ltr}
+  .hero-inner,
+  .about-grid,
+  .contact-grid,
+  .article,
+  .online-search-grid{
+    grid-template-columns:1fr;gap:3rem;
+  }
+  .article.reverse .article-image,
+  .article .article-image{order:0}
+  .article.reverse .article-content,
+  .article .article-content{order:0}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
   .about-image img,.article-image img{height:400px}
+  section{padding:5rem 1.5rem}
+  .hero{padding:110px 1.5rem 60px}
 }
-@media (max-width:640px){
+
+@media (max-width:768px){
+  .regions,.cta-banner{background-attachment:scroll}
   section{padding:4rem 1.2rem}
-  .hero{padding:100px 1.2rem 40px}
-  .header{padding:.8rem 1rem}
-  .header-phone span{display:none}
-  .header-phone{padding:.7rem 1rem}
-  .logo-text small{font-size:.6rem}
-  .logo{font-size:1.1rem}
-  .logo-icon{width:40px;height:40px}
+  .hero{padding:100px 1.2rem 50px;min-height:auto}
+  .hero h1{font-size:clamp(1.8rem,7vw,2.5rem);line-height:1.15}
+  .hero-sub{font-size:.98rem}
+  .hero-card{padding:1.5rem}
+  .hero-card h3{font-size:1rem}
+  .hero-stat-text strong{font-size:.95rem}
+  .hero-stat-text span{font-size:.8rem}
+  .hero-stat-icon{width:40px;height:40px;font-size:1rem}
+  .section-title{font-size:clamp(1.6rem,5vw,2rem)}
+  .section-header{margin-bottom:2.5rem}
+  .about-grid,.article{gap:2rem}
   .about-image img,.article-image img{height:280px}
-  .footer-grid{grid-template-columns:1fr}
-  .contact-info{padding:2rem}
-  .float-btn{width:52px;height:52px;font-size:1.4rem}
-  .notification{max-width:calc(100% - 40px);left:10px;right:10px;padding:1rem}
+  .about-badge-float{padding:1rem 1.3rem;bottom:1rem;left:1rem}
+  .about-badge-float strong{font-size:2rem}
+  .about-badge-float span{font-size:.75rem}
+  .article h2{font-size:1.4rem}
+  .article h3{font-size:1.1rem}
+  .services-grid,.regions-grid{gap:1rem}
+  .service-card,.region-card{padding:2rem 1.5rem}
+  .why-card{padding:2rem 1.5rem}
+  .why-number{font-size:3rem}
+  .contact-info{padding:1.8rem}
+  .contact-info h2{font-size:1.6rem}
+  .map-wrapper,.map-wrapper iframe{min-height:400px}
+  .cta-banner{padding:5rem 1.2rem}
+  .cta-banner-phone{font-size:clamp(1.5rem,6vw,2.2rem);flex-wrap:wrap;justify-content:center}
+  .footer{padding:3.5rem 1.2rem 1.5rem}
+  .footer-grid{grid-template-columns:1fr;gap:2rem;padding-bottom:2rem}
+  .plate-badge{font-size:.95rem;padding:.6rem 1.1rem;letter-spacing:1.5px;flex-wrap:wrap}
+  .plate-badge .plate-label{font-size:.6rem}
+  .online-search-list li{gap:.8rem}
+  .search-badge-float{top:1rem;left:1rem;padding:.5rem 1rem;font-size:.75rem}
+}
+
+@media (max-width:640px){
+  .header{padding:.8rem 1rem}
+  .header-inner{gap:.8rem}
+  .header-phone{padding:.65rem 1rem;font-size:.85rem}
+  .header-phone span{display:none}
+  .logo{font-size:1rem;gap:.6rem}
+  .logo-text strong{font-size:.95rem;line-height:1.2}
+  .logo-text small{font-size:.55rem;letter-spacing:1px}
+  .logo-icon{width:38px;height:38px;border-radius:11px}
+  .logo-icon i{font-size:1.1rem}
+
+  section{padding:3.5rem 1rem}
+  .hero{padding:90px 1rem 40px}
+  .hero h1{font-size:1.75rem}
+  .hero-sub{font-size:.92rem;margin-bottom:1.8rem}
+  .hero-badge{font-size:.7rem;padding:.5rem 1rem;margin-bottom:1.2rem}
+  .hero-cta{gap:.7rem}
+  .btn{padding:.9rem 1.4rem;font-size:.9rem;flex:1;justify-content:center;min-width:140px}
+  .hero-card{padding:1.3rem;border-radius:18px}
+  .hero-stat{padding:.7rem 0;gap:.8rem}
+  .hero-stat-icon{width:38px;height:38px;font-size:.95rem}
+
+  .section-title{font-size:1.5rem;line-height:1.25}
+  .section-badge{font-size:.7rem;padding:.4rem 1rem}
+  .section-subtitle{font-size:.95rem}
+
+  .about-image img,.article-image img{height:240px}
+  .about-content p,.article p{font-size:.95rem}
+  .about-features li,.online-search-list li{padding:.8rem 0;gap:.8rem}
+  .about-features li i,.online-search-list li i{width:34px;height:34px;font-size:1rem}
+
+  .service-card,.region-card{padding:1.5rem 1.2rem}
+  .service-card h3,.region-card h3{font-size:1.1rem}
+  .service-icon,.region-icon{font-size:1.5rem}
+  .service-icon{width:55px;height:55px;border-radius:14px}
+
+  .why-card{padding:1.5rem 1.2rem}
+  .why-number{font-size:2.5rem}
+  .why-card h3{font-size:1.05rem}
+
+  .faq-question{padding:1.1rem 1.3rem;font-size:.92rem;gap:.8rem}
+  .faq-answer-inner{padding:0 1.3rem 1.2rem;font-size:.92rem}
+
+  .contact-info{padding:1.5rem;border-radius:18px}
+  .contact-info h2{font-size:1.4rem}
+  .contact-item{gap:.9rem;padding:1rem 0}
+  .contact-item-icon{width:42px;height:42px;font-size:1rem;border-radius:11px}
+  .contact-item-text strong{font-size:.92rem}
+  .contact-item-text a,.contact-item-text span{font-size:.85rem;word-break:break-word}
+  .map-wrapper,.map-wrapper iframe{min-height:320px}
+
+  .cta-banner{padding:4rem 1rem}
+  .cta-banner h2{font-size:1.6rem}
+  .cta-banner p{font-size:1rem;margin-bottom:1.8rem}
+  .cta-banner-phone{font-size:1.5rem;gap:.5rem}
+
+  .footer-logo{font-size:1.3rem}
+  .footer-col h4{font-size:1rem;margin-bottom:1rem}
+  .footer-col p,.footer-col a{font-size:.88rem}
+
+  .float-btn{width:50px;height:50px;font-size:1.3rem}
+  .float-buttons{right:15px;bottom:15px;gap:10px}
+  
+  .notification{
+    max-width:calc(100% - 24px);left:12px;right:12px;
+    padding:.9rem 1rem;border-radius:12px;
+  }
+  .notification-icon{width:42px;height:42px;font-size:1.1rem}
+  .notification-content strong{font-size:.9rem}
+  .notification-content p{font-size:.78rem}
+
+  .plate-badge{font-size:.85rem;padding:.5rem .9rem}
+}
+
+@media (max-width:380px){
+  .hero h1{font-size:1.55rem}
+  .btn{padding:.8rem 1rem;font-size:.85rem;min-width:0}
+  .btn i{font-size:.85rem}
+  .header-phone{padding:.55rem .8rem}
+  .logo-text small{display:none}
+  .section-title{font-size:1.35rem}
+  .plate-badge{font-size:.8rem;letter-spacing:1px}
 }
 </style>
 </head>
@@ -853,7 +1014,7 @@ section{padding:6rem 2rem;position:relative}
         <span class="dot"></span> Şu An Hizmette · 7/24 Açık
       </div>
       <h1>Samsun <span class="highlight">İlkadım Meydan</span> Taksi Durağı</h1>
-      <p><span class="kw">Samsun ilkadım taksi</span> ihtiyacınızda 15 yılı aşkın deneyimimizle şehir içi ve şehirlerarası tüm güzergâhlarda yanınızdayız. Güvenli araçlarımız, deneyimli şoförlerimiz ve rekabetçi tarifemizle 7 gün 24 saat kesintisiz hizmet sunuyoruz.</p>
+      <p class="hero-sub"><span class="kw">Samsun ilkadım taksi</span> ihtiyacınızda 15 yılı aşkın deneyimimizle şehir içi ve şehirlerarası tüm güzergâhlarda yanınızdayız. Güvenli araçlarımız, deneyimli şoförlerimiz ve rekabetçi tarifemizle 7 gün 24 saat kesintisiz hizmet sunuyoruz.</p>
       <div class="hero-cta">
         <a href="tel:05326036636" class="btn btn-primary">
           <i class="fas fa-phone"></i> Hemen Taksi Çağır
@@ -1097,7 +1258,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-left">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi3.webp" alt="Samsun İlkadım taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-right">
+      <div class="article-content reveal-right">
         <h2>Samsun İlkadım Taksi Hizmetinde Güvenilir Adres</h2>
         <p><span class="kw">Samsun ilkadım taksi</span> denince akla gelen ilk isimlerden biri olan durağımız, İlkadım merkezinde konumlanmaktadır. Cumhuriyet Meydanı, Saathane, Bulvar AVM, Piazza AVM gibi İlkadım'ın en yoğun noktalarına dakikalar içinde ulaşabiliyoruz. Şehir merkezinde alışveriş yapmak, bir iş toplantısına yetişmek ya da akşam dışarıda buluşmak için taksi arıyorsanız, doğru yerdesiniz.</p>
         <p>Özellikle yoğun saatlerde trafiğe takılmadan ara sokakları kullanarak yolunuzu kısaltıyoruz. Bölgeye hâkim şoförlerimiz sayesinde en kısa ve en güvenli rotadan hedefinize varıyorsunuz. <span class="kw">İlkadım taksi durağı</span> olarak bu tecrübe bizim en büyük farkımız.</p>
@@ -1119,7 +1280,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-right">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi4.webp" alt="Atakum taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-left">
+      <div class="article-content reveal-left">
         <h2>Atakum Taksi: Sahilden Üniversiteye Güvenilir Ulaşım</h2>
         <p>Atakum, Samsun'un en hızlı büyüyen ve en yaşanabilir ilçelerinden biri. Sahil şeridi, Ondokuz Mayıs Üniversitesi, Atakum Bulvarı ve sosyal yaşam alanlarıyla sürekli hareketli olan bölgede <strong>atakum taksi</strong> ihtiyacı da yüksek. Biz İlkadım merkezinden hareket ederek Atakum'un tüm mahallelerine en kısa sürede ulaşıyoruz.</p>
         <p>Özellikle öğrenci nüfusunun yoğun olduğu Kurupelit ve Balaç bölgelerinde, OMÜ kampüsüne gidiş-dönüşlerde güvenilir bir ulaşım seçeneği sunuyoruz. Akşam geç saatlerde derslerden çıkan, gece yurduna dönmesi gereken öğrenciler için 7/24 açık bir çağrı merkeziyiz.</p>
@@ -1140,7 +1301,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-left">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi5.webp" alt="Türkiş taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-right">
+      <div class="article-content reveal-right">
         <h2>Türkiş Taksi: Bölgenin Tanıdık ve Güvenilir Adresi</h2>
         <p>Türkiş Mahallesi, Samsun'un yerleşik ve köklü mahallelerinden biri. Hem şehir merkezine yakınlığı hem de yeşil alanlarıyla tercih edilen bu bölgede <strong>türkiş taksi</strong> hizmeti için de en güvenilir adresiyiz. Merkezi konumumuz, Türkiş Mahallesi'ne dakikalar içinde ulaşmamızı sağlıyor.</p>
         <p>Türkiş'te yaşayan müşterilerimizin özellikle sabah işe gidişlerde, çocukları okula bırakırken veya hastane randevularına yetişmek için tercih ettiği düzenli müşteri grubumuz var. Kurumsal ve bireysel anlaşmalı taksi seçeneklerimizle sabit güzergâhlarınız için avantajlı fiyatlar sunabiliyoruz.</p>
@@ -1161,7 +1322,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-right">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi1.webp" alt="Mimarsinan taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-left">
+      <div class="article-content reveal-left">
         <h2>Mimarsinan Taksi: Konforlu ve Hızlı Bölge Hizmeti</h2>
         <p>Mimarsinan, hem İlkadım hem de Atakum tarafında yoğun yerleşim alanlarına sahip, sosyal hayatın canlı olduğu bir mahalle. <strong>Mimarsinan taksi</strong> ihtiyacınız için bizi aradığınızda, bölgeyi yakından tanıyan şoförlerimiz en kısa yoldan kapınıza gelir ve sizi hedefinize güvenle ulaştırır.</p>
         <p>Bu bölgede sık kullanılan güzergâhlar arasında OMÜ Tıp Fakültesi Hastanesi, Medical Park, Atakum Sahili ve Samsun Tren Garı gelmektedir. Ayrıca düğün salonları ve restoran yoğunluğu nedeniyle akşam saatlerinde talep artan bölgelerden biridir; bu saatlerde de aracımız mutlaka hazır bulunur.</p>
@@ -1182,7 +1343,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-left">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi2.webp" alt="Ömürevleri taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-right">
+      <div class="article-content reveal-right">
         <h2>Ömürevleri Taksi: Güvenli Aile Yolculukları</h2>
         <p>Ömürevleri Mahallesi, Samsun'un sakin ve aile ağırlıklı nüfusa sahip mahallelerinden biri. Bu bölgede taksi hizmetinden beklenen en önemli şey güven ve dakiklik. <strong>Ömürevleri taksi</strong> hizmetimizde bu iki unsuru da önceliğimiz yapıyoruz.</p>
         <p>Çocuklarını kreşe, okula bırakan anneler; poliklinik randevusuna giden emekliler; gece geç saatte havalimanına yetişmesi gereken iş insanları... Ömürevleri'nden bizi arayan her müşterimizin ihtiyacını en titiz şekilde karşılıyoruz. Araçlarımızda çocuk koltuğu talebini önceden bildirmeniz hâlinde ek olarak temin edebiliyoruz.</p>
@@ -1203,7 +1364,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-right">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi3.webp" alt="Yenimahalle taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-left">
+      <div class="article-content reveal-left">
         <h2>Yenimahalle Taksi: En Yakın Durak, En Hızlı Cevap</h2>
         <p>Yenimahalle, İlkadım'ın merkezi mahallelerinden biri olarak bizim en sık hizmet verdiğimiz bölgelerden biri. <strong>Yenimahalle taksi</strong> denince aklınıza gelen ilk durak olmak için gece-gündüz demeden hazır bekliyoruz.</p>
         <p>Mahalle içindeki sokakları iyi bildiğimiz için, tarif vermeniz gerekmeden apartmanınızın kapısına ulaşabiliyoruz. Özellikle yaşlı ve hareket kısıtlılığı olan müşterilerimiz için evden çıkış anında ek destek sağlıyor, bagajlarınızı araca yerleştirmenize yardımcı oluyoruz.</p>
@@ -1224,7 +1385,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="article-image reveal-left">
         <img src="https://www.ilkadimmeydantaksi.com/images/taksi4.webp" alt="Körfez taksi hizmeti" loading="lazy">
       </div>
-      <div class="reveal-right">
+      <div class="article-content reveal-right">
         <h2>Körfez Taksi: Sahil Kenarından Şehir İçine</h2>
         <p>Körfez Mahallesi, Samsun'un sahil manzarasına yakın, hem yerli hem gelen misafirlerin sıkça bulunduğu mahallelerden biri. <strong>Körfez taksi</strong> hizmetimizde hem bölge sakinlerine hem de bölgeye gelen misafirlere kesintisiz ulaşım sunuyoruz.</p>
         <p>Özellikle yaz aylarında sahil çevresinde yoğunluk artar; bu süreçlerde de bölgedeki araç sayımızı artırarak taleplere hızlı cevap veriyoruz. Akşam buluşmalarından sabah yürüyüşleri dönüşü eve gitmeye kadar her ihtiyacınızda yanınızdayız.</p>
