@@ -86,6 +86,11 @@
     {"@type":"Place","name":"Yenimahalle"},
     {"@type":"Place","name":"Körfez"}
   ],
+  "vehicle": {
+    "@type": "Vehicle",
+    "vehicleIdentificationNumber": "55 T 0233",
+    "name": "İlkadım Meydan Taksi Resmi Ticari Taksi"
+  },
   "sameAs": [
     "https://www.instagram.com/ozcan_bayrak_55/"
   ],
@@ -148,6 +153,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "İlkadım ilçesi sınırları içinde ortalama 3-7 dakika içinde adresinizde oluyoruz. Atakum, Türkiş, Mimarsinan gibi çevre bölgelerde süre trafiğe göre 5-15 dakika arasında değişmektedir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Taksiniz resmi mi? Plaka bilgisini paylaşıyor musunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, aracımız 55 T 0233 plakalı, Samsun Büyükşehir Belediyesi'ne kayıtlı, ruhsatlı ve sigortalı resmi ticari taksidir. Güvenliğiniz için plaka bilgimizi web sitesinde açıkça paylaşıyoruz. Aracımıza binmeden önce plakayı kontrol edebilirsiniz."
       }
     }
   ]
@@ -664,6 +677,99 @@ section{padding:6rem 2rem;position:relative}
 @keyframes ripple{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
 @keyframes pulseCall{0%,100%{box-shadow:0 8px 25px rgba(255,215,0,.4)}50%{box-shadow:0 8px 35px rgba(255,215,0,.8)}}
 
+/* ============ ONLINE SEARCH (ilkadimmeydantaksi.webp) ============ */
+.online-search{
+  background:linear-gradient(180deg,#fff 0%,#fafafa 100%);
+  position:relative;overflow:hidden;
+}
+.online-search::before{
+  content:'';position:absolute;top:0;right:0;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,215,0,.08),transparent 70%);
+  pointer-events:none;
+}
+.online-search-grid{
+  display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;
+  align-items:center;position:relative;z-index:2;
+}
+.online-search-content h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;line-height:1.2;
+  margin-bottom:1.5rem;color:var(--black);
+}
+.online-search-content h2 .highlight{
+  background:linear-gradient(135deg,var(--yellow-dark),#b8860b);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.online-search-content p{
+  color:#333;font-size:1.05rem;line-height:1.8;margin-bottom:1.2rem;
+}
+.online-search-list{list-style:none;margin:2rem 0}
+.online-search-list li{
+  display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;
+  border-bottom:1px solid #eee;
+}
+.online-search-list li i{
+  color:var(--yellow-dark);font-size:1.2rem;margin-top:.2rem;
+  background:rgba(255,215,0,.15);width:38px;height:38px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.online-search-list strong{display:block;margin-bottom:.2rem;font-size:1rem}
+.online-search-list span{color:var(--gray);font-size:.92rem}
+.online-search-image{
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.15);
+  position:relative;
+  transition:transform .6s ease;
+}
+.online-search-image:hover{transform:translateY(-8px)}
+.online-search-image img{
+  width:100%;height:auto;display:block;
+}
+.online-search-image::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(255,215,0,.1));
+  pointer-events:none;z-index:2;
+}
+.search-badge-float{
+  position:absolute;top:1.5rem;left:1.5rem;z-index:3;
+  background:#fff;padding:.7rem 1.2rem;border-radius:50px;
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.85rem;font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+.search-badge-float .live-dot{
+  width:8px;height:8px;border-radius:50%;background:#4ade80;
+  animation:blink 1.5s infinite;
+}
+
+/* ============ PLAKA ROZETİ ============ */
+.plate-badge{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));
+  color:var(--black);padding:.7rem 1.4rem;border-radius:12px;
+  font-weight:900;font-size:1.1rem;letter-spacing:2px;
+  box-shadow:0 8px 20px rgba(255,215,0,.3);
+  border:3px solid var(--black);
+  margin-top:1.5rem;
+  font-family:'Inter',monospace;
+}
+.plate-badge .plate-label{
+  font-size:.65rem;letter-spacing:1px;
+  background:var(--black);color:var(--yellow);
+  padding:.3rem .6rem;border-radius:6px;
+  font-weight:700;text-transform:uppercase;
+}
+.plate-inline{
+  display:inline-block;
+  background:var(--yellow);color:var(--black);
+  padding:.15rem .55rem;border-radius:4px;
+  font-weight:900;letter-spacing:1.5px;
+  border:2px solid var(--black);
+  font-size:.9em;
+  white-space:nowrap;
+}
+
 /* ============ NOTIFICATION POPUP ============ */
 .notification{
   position:fixed;bottom:-200px;left:20px;z-index:998;
@@ -698,7 +804,7 @@ section{padding:6rem 2rem;position:relative}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
-  .hero-inner,.about-grid,.contact-grid,.article,.article.reverse{grid-template-columns:1fr;gap:3rem}
+  .hero-inner,.about-grid,.contact-grid,.article,.article.reverse,.online-search-grid{grid-template-columns:1fr;gap:3rem}
   .article.reverse{direction:ltr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
   .about-image img,.article-image img{height:400px}
@@ -729,7 +835,7 @@ section{padding:6rem 2rem;position:relative}
       <div class="logo-icon"><i class="fas fa-taxi"></i></div>
       <div class="logo-text">
         <strong>İlkadım Meydan Taksi</strong>
-        <small>Samsun · 7/24 Hizmet</small>
+        <small>Samsun · 7/24 · Plaka: 55 T 0233</small>
       </div>
     </a>
     <a href="tel:05326036636" class="header-phone">
@@ -776,6 +882,57 @@ section{padding:6rem 2rem;position:relative}
           <div class="hero-stat-icon"><i class="fas fa-wallet"></i></div>
           <div class="hero-stat-text"><strong>Şeffaf Taksimetre Tarifesi</strong><span>Resmi fiyat, sürpriz yok</span></div>
         </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon"><i class="fas fa-id-card"></i></div>
+          <div class="hero-stat-text"><strong>Resmi Plaka: 55 T 0233</strong><span>Ruhsatlı, sigortalı, tam yetkili ticari taksi</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE SEARCH -->
+<section class="online-search" id="online-taksi">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">İnternetten Taksi Çağırma</div>
+      <h2 class="section-title">Google'da "İlkadım Taksi" Arayınca Karşınıza Çıkıyoruz</h2>
+      <p class="section-subtitle">Artık taksi durağına gitmek ya da telefon rehberini karıştırmak yok. Cebinizden bir arama ile dakikalar içinde kapınızdayız.</p>
+    </div>
+    <div class="online-search-grid">
+      <div class="online-search-content reveal-left">
+        <h2>Telefonunuzdan Tek Aramayla <span class="highlight">İlkadım Meydan Taksi</span></h2>
+        <p>Günümüzde taksi ihtiyacı doğduğunda yapılan ilk iş Google'a "<span class="kw">ilkadım en yakın taksi</span>" ya da "<span class="kw">samsun ilkadım taksi numarası</span>" yazmak. Bu arama sonuçlarında en üst sıralarda yer almak için biz de sizin kadar çalışıyoruz. Amacımız, taksi arayan herkesin bize hızla ulaşabilmesi.</p>
+        <p>Bir elinizde telefon, acil bir yere yetişmeniz gerekiyor. "<span class="kw">İlkadım taksi durağı</span>" yazıyor, karşınıza biz çıkıyoruz. Siteden numaramıza dokunduğunuz anda en yakın aracımız size doğru yola çıkmış oluyor. Tüm bu süreç ortalama 15 saniyenizi alıyor.</p>
+        <ul class="online-search-list">
+          <li>
+            <i class="fas fa-magnifying-glass"></i>
+            <div><strong>Google'da Aradığınız An Bulun</strong><span>"ilkadım meydan taksi", "atakum taksi" gibi aramalarda üst sıralardayız.</span></div>
+          </li>
+          <li>
+            <i class="fas fa-hand-pointer"></i>
+            <div><strong>Tek Dokunuşla Arama</strong><span>Siteden telefon ikonuna bastığınız anda arama başlar, kaybedilecek saniye yok.</span></div>
+          </li>
+          <li>
+            <i class="fab fa-whatsapp"></i>
+            <div><strong>WhatsApp'tan Konum Paylaşımı</strong><span>Adres tarif etmenize gerek yok; konum paylaşın, biz gelelim.</span></div>
+          </li>
+          <li>
+            <i class="fas fa-shield-halved"></i>
+            <div><strong>Güven Sinyali: Resmi Plakamız</strong><span>Web sitesinde plakamızı açıkça paylaşıyoruz — siz de binmeden önce teyit edebilirsiniz.</span></div>
+          </li>
+        </ul>
+        <div class="plate-badge">
+          <span class="plate-label">Resmi Plaka</span>
+          55 T 0233
+        </div>
+      </div>
+      <div class="online-search-image reveal-right">
+        <div class="search-badge-float">
+          <span class="live-dot"></span>
+          Canlı Arama Sonucu
+        </div>
+        <img src="https://www.ilkadimmeydantaksi.com/images/ilkadimmeydantaksi.webp" alt="Google üzerinden ilkadım taksi durağı arayan kişi - İlkadım Meydan Taksi sonuçlarda" loading="lazy">
       </div>
     </div>
   </div>
@@ -813,6 +970,10 @@ section{padding:6rem 2rem;position:relative}
           <li>
             <i class="fas fa-car-side"></i>
             <div><strong>Modern ve Bakımlı Araç Filosu</strong><span>Temiz, klimalı ve bakımı tam araçlarla konforlu yolculuk.</span></div>
+          </li>
+          <li>
+            <i class="fas fa-id-card-clip"></i>
+            <div><strong>Resmi Ticari Taksi · Plaka: <span class="plate-inline">55 T 0233</span></strong><span>Ruhsatlı, sigortalı ve Samsun Büyükşehir Belediyesi'ne kayıtlı yetkili aracımızla hizmetinizdeyiz.</span></div>
           </li>
         </ul>
       </div>
@@ -1203,6 +1364,17 @@ section{padding:6rem 2rem;position:relative}
       </div>
       <div class="faq-item">
         <div class="faq-question">
+          <span>Taksiniz resmi mi? Plaka bilgisini alabilir miyim?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Evet, aracımız <strong>55 T 0233</strong> plakalı, Samsun Büyükşehir Belediyesi'ne kayıtlı, ruhsatlı ve sigortalı resmi ticari taksidir. Güvenliğiniz için plakamızı web sitesinde açıkça paylaşıyoruz; aracımıza binmeden önce plakayı kontrol edebilir, isterseniz yakınlarınızla da paylaşabilirsiniz.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
           <span>Gece geç saatte veya bayram günlerinde hizmet veriyor musunuz?</span>
           <i class="fas fa-chevron-down"></i>
         </div>
@@ -1254,6 +1426,13 @@ section{padding:6rem 2rem;position:relative}
           <div class="contact-item-text">
             <strong>Çalışma Saatleri</strong>
             <span>7 Gün 24 Saat · Kesintisiz</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-id-card-clip"></i></div>
+          <div class="contact-item-text">
+            <strong>Resmi Plaka</strong>
+            <span><span class="plate-inline">55 T 0233</span> · Ruhsatlı, Sigortalı Ticari Taksi</span>
           </div>
         </div>
         <div class="contact-item">
@@ -1328,6 +1507,7 @@ section{padding:6rem 2rem;position:relative}
         <li><a href="https://wa.me/905326036636"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
         <li><i class="fas fa-location-dot"></i> İlkadım / Samsun</li>
         <li><i class="fas fa-clock"></i> 7/24 Açık</li>
+        <li><i class="fas fa-id-card-clip"></i> Plaka: <strong style="color:var(--yellow)">55 T 0233</strong></li>
       </ul>
     </div>
   </div>
