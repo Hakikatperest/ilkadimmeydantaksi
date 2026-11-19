@@ -24,16 +24,16 @@
 <meta property="og:description" content="Samsun İlkadım taksi durağı olarak 7/24 hizmetinizdeyiz. Yenimahalle, Körfez ve tüm Samsun'a hızlı ulaşım. 0532 603 66 36">
 <meta property="og:url" content="https://www.ilkadimmeydantaksi.com/">
 <meta property="og:site_name" content="İlkadım Meydan Esen Taksi">
-<meta property="og:image" content="https://www.ilkadimmeydantaksi.com/images/taksi2.webp">
+<meta property="og:image" content="https://www.ilkadimmeydantaksi.com/images/css.jpeg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Samsun İlkadım Meydan Esen Taksi | 7/24 Taksi">
 <meta name="twitter:description" content="İlkadım ve tüm Samsun bölgelerinde 7/24 taksi hizmeti. 0532 603 66 36">
-<meta name="twitter:image" content="https://www.ilkadimmeydantaksi.com/images/taksi2.webp">
+<meta name="twitter:image" content="https://www.ilkadimmeydantaksi.com/images/css.jpeg">
 
 <!-- Preload -->
-<link rel="preload" as="image" href="https://www.ilkadimmeydantaksi.com/images/taksi3.webp">
+<link rel="preload" as="image" href="https://www.ilkadimmeydantaksi.com/images/css.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -51,6 +51,7 @@
   "description": "Samsun İlkadım'da 7/24 hizmet veren taksi durağı. Yenimahalle ve Körfez bölgelerine hızlı ve güvenli ulaşım sağlıyoruz.",
   "url": "https://www.ilkadimmeydantaksi.com/",
   "image": [
+    "https://www.ilkadimmeydantaksi.com/images/css.jpeg",
     "https://www.ilkadimmeydantaksi.com/images/taksi2.webp",
     "https://www.ilkadimmeydantaksi.com/images/taksi3.webp"
   ],
@@ -256,8 +257,8 @@ h1,h2,h3,h4,p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background-image:url('https://www.ilkadimmeydantaksi.com/images/taksi3.webp');
-  background-size:cover;background-position:center;
+  background-image:url('https://www.ilkadimmeydantaksi.com/images/css.jpeg');
+  background-size:cover;background-position:center 30%;
   opacity:.25;
   filter:saturate(1.2);
 }
@@ -331,6 +332,24 @@ h1,h2,h3,h4,p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
   box-shadow:0 10px 30px rgba(255,215,0,.4);
 }
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(255,215,0,.6)}
+.btn-cagir{
+  background:linear-gradient(135deg,#2F7BFF 0%,#0B4FE0 100%);
+  color:#fff;border-radius:16px;padding:.7rem 1.7rem .7rem .75rem;
+  letter-spacing:.01em;
+  box-shadow:0 12px 32px rgba(23,96,255,.45),inset 0 1px 0 rgba(255,255,255,.28);
+}
+.btn-cagir-ikon{
+  width:42px;height:42px;border-radius:12px;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.18);font-size:1rem;
+}
+.btn-cagir:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(23,96,255,.6),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-wa{
+  background:#25D366;color:#fff;border-radius:16px;
+  box-shadow:0 12px 32px rgba(37,211,102,.35);
+}
+.btn-wa i{font-size:1.25rem}
+.btn-wa:hover{background:#1EBE5A;transform:translateY(-3px)}
 .btn-outline{
   background:rgba(255,255,255,.08);color:#fff;
   border:2px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);
@@ -408,8 +427,8 @@ section{padding:6rem 2rem;position:relative}
   position:relative;border-radius:24px;overflow:hidden;
   box-shadow:var(--shadow-lg);min-width:0;
 }
-.about-image img{width:100%;height:600px;object-fit:cover;transition:transform .8s ease}
-.about-image:hover img{transform:scale(1.05)}
+.about-image img{width:100%;height:auto;display:block;transition:transform .8s ease}
+
 .about-image::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(135deg,transparent 50%,rgba(255,215,0,.15));
@@ -519,8 +538,8 @@ section{padding:6rem 2rem;position:relative}
 .article.reverse .article-image{order:2}
 .article.reverse .article-content{order:1}
 .article-image{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);min-width:0}
-.article-image img{width:100%;height:450px;object-fit:cover;transition:transform .8s ease}
-.article-image:hover img{transform:scale(1.08)}
+.article-image img{width:100%;height:auto;display:block;transition:transform .8s ease}
+
 .article-content{min-width:0}
 .article h2{
   font-family:'Playfair Display',serif;
@@ -687,7 +706,7 @@ section{padding:6rem 2rem;position:relative}
 }
 .footer-socials a:hover{background:var(--yellow);color:var(--black);transform:translateY(-3px)}
 .footer-bottom{
-  max-width:1300px;margin:0 auto;padding-top:2rem;
+  max-width:1300px;margin:0 auto;padding:2rem 80px 0;
   text-align:center;color:rgba(255,255,255,.5);font-size:.9rem;
 }
 
@@ -855,7 +874,6 @@ section{padding:6rem 2rem;position:relative}
   .article.reverse .article-content,
   .article .article-content{order:0}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .about-image img,.article-image img{height:400px}
   section{padding:5rem 1.5rem}
   .hero{padding:110px 1.5rem 60px}
 }
@@ -874,7 +892,6 @@ section{padding:6rem 2rem;position:relative}
   .section-title{font-size:clamp(1.6rem,5vw,2rem)}
   .section-header{margin-bottom:2.5rem}
   .about-grid,.article{gap:2rem}
-  .about-image img,.article-image img{height:280px}
   .about-badge-float{padding:1rem 1.3rem;bottom:1rem;left:1rem}
   .about-badge-float strong{font-size:2rem}
   .about-badge-float span{font-size:.75rem}
@@ -923,7 +940,6 @@ section{padding:6rem 2rem;position:relative}
   .section-badge{font-size:.7rem;padding:.4rem 1rem}
   .section-subtitle{font-size:.95rem}
 
-  .about-image img,.article-image img{height:240px}
   .about-content p,.article p{font-size:.95rem}
   .about-features li,.online-search-list li{padding:.8rem 0;gap:.8rem}
   .about-features li i,.online-search-list li i{width:34px;height:34px;font-size:1rem}
@@ -980,6 +996,15 @@ section{padding:6rem 2rem;position:relative}
   .section-title{font-size:1.35rem}
   .plate-badge{font-size:.8rem;letter-spacing:1px}
 }
+@media (max-width:768px){
+  .footer-bottom{padding:1.5rem 0 130px}
+  .btn-cagir-ikon{width:34px;height:34px;border-radius:10px}
+  .btn-cagir{padding:.6rem 1.1rem .6rem .6rem}
+}
+@media (max-width:480px){
+  .hero-cta .btn{flex:1 1 100%;font-size:1rem}
+  .hero-cta .btn-wa{padding:.95rem 1.1rem}
+}
 </style>
 </head>
 <body>
@@ -1011,10 +1036,10 @@ section{padding:6rem 2rem;position:relative}
       <h1>Samsun <span class="highlight">İlkadım Meydan Esen</span> Taksi Durağı</h1>
       <p class="hero-sub"><span class="kw">Samsun ilkadım taksi</span> ihtiyacınızda 15 yılı aşkın deneyimimizle şehir içi ve şehirlerarası tüm güzergâhlarda yanınızdayız. Güvenli araçlarımız, deneyimli şoförlerimiz ve rekabetçi tarifemizle 7 gün 24 saat kesintisiz hizmet sunuyoruz.</p>
       <div class="hero-cta">
-        <a href="tel:05326036636" class="btn btn-primary">
-          <i class="fas fa-phone"></i> Hemen Taksi Çağır
+        <a href="tel:05326036636" class="btn btn-cagir">
+          <span class="btn-cagir-ikon"><i class="fas fa-phone"></i></span> Hemen Taksi Çağır
         </a>
-        <a href="https://wa.me/905326036636" class="btn btn-outline" target="_blank" rel="noopener">
+        <a href="https://wa.me/905326036636" class="btn btn-wa" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
       </div>
@@ -1254,7 +1279,7 @@ section{padding:6rem 2rem;position:relative}
     <!-- YENİMAHALLE -->
     <article class="article reverse" id="yenimahalle">
       <div class="article-image reveal-right">
-        <img src="https://www.ilkadimmeydantaksi.com/images/taksi3.webp" alt="Yenimahalle taksi hizmeti" loading="lazy">
+        <img src="https://www.ilkadimmeydantaksi.com/images/css.jpeg" alt="Yenimahalle taksi hizmeti" width="1090" height="1443" loading="lazy">
       </div>
       <div class="article-content reveal-left">
         <h2>Yenimahalle Taksi: En Yakın Durak, En Hızlı Cevap</h2>
@@ -1631,6 +1656,13 @@ document.querySelectorAll('.faq-question').forEach(q=>{
   });
 });
 
+// Sayfanın en altındaki yazılar görünürken bildirim kutusu gizlenir
+let altGorunur = false;
+new IntersectionObserver((es)=>{
+  altGorunur = es[0].isIntersecting;
+  if(altGorunur) document.getElementById('notification').classList.remove('show');
+}).observe(document.querySelector('.footer-bottom'));
+
 // Notification trigger on mid-page scroll
 let notificationShown = false;
 window.addEventListener('scroll',()=>{
@@ -1639,7 +1671,7 @@ window.addEventListener('scroll',()=>{
   if(scrollPercent > 0.35){
     notificationShown = true;
     setTimeout(()=>{
-      document.getElementById('notification').classList.add('show');
+      if(!altGorunur) document.getElementById('notification').classList.add('show');
       // Auto-hide after 8s
       setTimeout(()=>document.getElementById('notification').classList.remove('show'),12000);
     },600);
