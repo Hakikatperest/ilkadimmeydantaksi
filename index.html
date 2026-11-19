@@ -291,14 +291,18 @@ h1,h2,h3,h4,p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
 }
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,5vw,4.5rem);
+  font-size:clamp(2rem,4.3vw,3.7rem);
   font-weight:900;color:#fff;line-height:1.1;
   margin-bottom:1.5rem;
   letter-spacing:-.02em;
   text-shadow:0 4px 30px rgba(0,0,0,.5);
   animation:fadeUp 1s ease .2s backwards;
 }
-.hero h1 .highlight{
+.hero-metin{text-align:center}
+.hero-metin .hero-cta{justify-content:center}
+.hero-metin .hero-sub{margin-left:auto;margin-right:auto}
+.hero h1{text-wrap:balance}
+.hero h1 .highlight{display:block;
   background:linear-gradient(135deg,#FFD700 0%,#FFA500 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   display:inline-block;
@@ -336,6 +340,14 @@ h1,h2,h3,h4,p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
   letter-spacing:.01em;
   box-shadow:0 12px 32px rgba(23,96,255,.45),inset 0 1px 0 rgba(255,255,255,.28);
 }
+.btn-cagir{position:relative;animation:cagirNabiz 1.8s ease-out infinite}
+.btn-cagir:hover{animation-play-state:paused}
+@keyframes cagirNabiz{
+  0%{box-shadow:0 12px 32px rgba(23,96,255,.45),inset 0 1px 0 rgba(255,255,255,.28),0 0 0 0 rgba(47,123,255,.65)}
+  70%{box-shadow:0 12px 32px rgba(23,96,255,.45),inset 0 1px 0 rgba(255,255,255,.28),0 0 0 18px rgba(47,123,255,0)}
+  100%{box-shadow:0 12px 32px rgba(23,96,255,.45),inset 0 1px 0 rgba(255,255,255,.28),0 0 0 0 rgba(47,123,255,0)}
+}
+@media (prefers-reduced-motion:reduce){.btn-cagir{animation:none}}
 .btn-cagir-ikon{
   width:42px;height:42px;border-radius:12px;flex:none;
   display:inline-flex;align-items:center;justify-content:center;
@@ -1027,7 +1039,7 @@ section{padding:6rem 2rem;position:relative}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div>
+    <div class="hero-metin">
       <div class="hero-badge">
         <span class="dot"></span> Şu An Hizmette · 7/24 Açık
       </div>
@@ -1037,8 +1049,8 @@ section{padding:6rem 2rem;position:relative}
         <a href="tel:05326036636" class="btn btn-cagir">
           <span class="btn-cagir-ikon"><i class="fas fa-phone"></i></span> Hemen Taksi Çağır
         </a>
-        <a href="https://wa.me/905326036636" class="btn btn-wa" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> WhatsApp
+        <a href="https://wa.me/905326036636?text=Merhaba,%20taksi%20istiyorum.%20Konumumu%20g%C3%B6nderiyorum." class="btn btn-wa" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Konum Gönder
         </a>
       </div>
     </div>
